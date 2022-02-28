@@ -6,12 +6,14 @@ const app = express();
 const sessions = require('express-session');
 const cookieParser = require('cookie-parser');
 
+
 app.use(sessions({
     secret: 'secret',
     saveUninitialized: true,
     cookie: { maxAge: 60000 },
     resave: false
     }));
+app.set('view engine', 'pug');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', route);

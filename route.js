@@ -15,7 +15,7 @@ let db = new sqlite3.Database(path.join(__dirname, '/db/database.db'), (err) => 
 
 
 router.get('/signup', (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'signup.html'));
+    res.render('signup');
     
 });
 router.post('/signup', (req, res, next) => {
@@ -32,7 +32,7 @@ router.post('/signup', (req, res, next) => {
     
 
 router.get('/signin', (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'signin.html'));
+    res.render('signin');
     
     });
 
@@ -60,7 +60,7 @@ router.post('/signin', (req, res, next) => {
     db.close();
 });
 
-router.get('/logout', (req, res, next) => {
+router.post('/logout', (req, res, next) => {
     req.session.destroy();
     res.redirect('/signin');
 });
@@ -69,7 +69,7 @@ router.get('/dashboard', (req, res, next) => {
     session = req.session;
     if(session.userid)
     {
-        res.sendFile(path.join(__dirname, 'dashboard.html'));
+        res.render('dashboard', {userid: session.userid});
     }
     else{
         res.redirect('/signin');
