@@ -19,15 +19,16 @@
             <div class="d-flex justify-content-center row">
                 <div class="col-md-11">
                     <div class="row p-2 bg-white border rounded">
-                        <div class="row p-2 border">
+                        <div class="row p-2">
                             <div class="col-md-3 mt-1">
-                                <a href="/listings" class="fa fa-chevron-left">Back</a>
+                                <a href="/listings" class="fa fa-chevron-left"><h5>Back to Listings...</h5></a>
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-11">
                                 <div class="row">
                                     <img class="img-fluid img-responsive rounded product-image" src=<%= listing.images[0] %> >
+                                    <br>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8">
@@ -39,8 +40,11 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">$<%= listing.price %></h5>
+                                            <div class="card-body justify-content-center">
+                                                <h4 class="card-title">$<%= listing.price %></h4>
+                                                
+                                            </div>
+                                            <div class="card-footer">
                                                 <button class="btn btn-outline-primary btn-sm mt-2" type="button">Buy Now</button>
                                             </div>
                                         </div>
