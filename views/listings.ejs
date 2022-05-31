@@ -10,7 +10,7 @@
         <div class="col-lg-8 mx-auto">
             <!-- List group-->
             <ul class="list-group shadow">
-                <% foreach(listings as listing) { %>
+                <% listings.forEach(function(listing){ %>
                     <!-- list group item-->
                     <li class="list-group-item">
                         <!-- Custom content-->
@@ -31,7 +31,7 @@
                             </div><img src=<%= listing.image %> alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
                         </div> <!-- End -->
                     </li> <!-- End -->
-                <% } %>
+                <% });%>
             </ul> <!-- End -->
         </div>
     </div>
