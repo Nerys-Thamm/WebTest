@@ -1,24 +1,20 @@
-<nav class="navbar fixed-top navbar-expand-sm">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="navbar-nav">
-        <li class="active"><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/listings">Browse Listings</a></li>
-        <li><a href="/listings/new">New Listing</a></li>
-        <li><a href="#">Thingy3</a></li>
-      </ul>
-      <ul class="navbar-nav navbar-right">
-        <% if (loggedin) { %>
-        <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>  <%= userid %></a></li>
-        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>  Log Out</a></li>
-        <% } else { %>
-        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>  Log In</a></li>
-        <li><a href="/signup"><span class="glyphicon glyphicon-certificate"></span>  Get Started</a></li>
-        <% } %>
-      </ul>
-    </div>
-  </nav>
 
-
+<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+  <a class="navbar-brand" href="#">
+    <img src="https://cdn3.iconfinder.com/data/icons/gradient-circle/36/2018-512.png" width="30" height="30" alt="logo">
+    TradeYou
+  </a>
+  <span class="navbar-text">
+    Hey, there!
+  </span>
+  <ul class="navbar-nav">
+    <li class="nav-item"><a href="/listings">Browse</a></li>
+    <% if (loggedin) { %>
+    <li class="nav-item" style="margin-left: auto;"><a href="/profile"><span class="glyphicon glyphicon-user"></span>  <%= userid %></a></li>
+    <li class="nav-item" style="margin-left: auto;"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>  Log Out</a></li>
+    <% } else { %>
+    <li class="nav-item" style="margin-left: auto;"><a href="/login"><span class="glyphicon glyphicon-log-in"></span>  Log In</a></li>
+    <li class="nav-item" style="margin-left: auto;"><a href="/signup"><span class="glyphicon glyphicon-certificate"></span>  Get Started</a></li>
+    <% } %>
+  </ul>
+</nav>
