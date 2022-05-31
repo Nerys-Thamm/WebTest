@@ -14,14 +14,6 @@ router.get('/signup', (req, res, next) => {
     
 });
 router.post('/signup', (req, res, next) => {
-    let db = new sqlite3.Database(path.join(__dirname, '/db/database.db'));
-    db.all('INSERT INTO users (username, password) VALUES (?, ?)', [req.body.username, req.body.password], (err) => {
-        if (err) {
-            console.error(err.message);
-        }
-        console.log('A row has been inserted.');
-    })
-    db.close();
     db.createUser(req.body.username, req.body.email, req.body.password, time, time);
     res.redirect('/signin');
 });
