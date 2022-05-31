@@ -41,6 +41,7 @@ const Listing = mongoose.model('listing', ListingSchema);
 const UserSchema = new mongoose.Schema({
     id: {type: String, unique: true},
     username: String,
+    password: String,
     email: {type: String, unique: true},
     listings: [{type: mongoose.Schema.Types.ObjectId, ref: 'listing'}]
 });
@@ -60,7 +61,7 @@ function CreateNewUser(name, email, password, req, res) {
             console.log(err);
         }
         else {
-            passport.authenticate('local')(req, res, () => {
+            passport.authenticate("local")(req, res, () => {
                 res.redirect('/dashboard');
             });
         }
