@@ -4,10 +4,6 @@ const LocalStrategy = require('passport-local');
 const {v1: uuid } = require('uuid');
 var passportLocalMongoose = require('passport-local-mongoose');
 
-mongoose.set('newUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
 
 mongoose.connect('mongodb://localhost/db_app');
 
