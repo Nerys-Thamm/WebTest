@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 
 app.use(sessions({
     secret: 'secret',
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { maxAge: 120000 },
     resave: false
     }));
