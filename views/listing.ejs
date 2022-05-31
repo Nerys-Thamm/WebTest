@@ -18,15 +18,17 @@
         <div class="col col-md-9">
             <div class="d-flex justify-content-center row">
                 <div class="col-md-11">
-                    <div class="row p-2 bg-white border rounded">
+                    <div class="row p-2 bg-white border rounded justify-content-center">
+                        <div class="jumbotron">
+                            <h3><%= listing.title %></h3>
+                        </div>
                         <div class="col-md-11">
-                            <div class="row justify-content-center">
-                                <div class="col-md-11">
-                                    <img class="img-fluid img-responsive rounded product-image" src=<%= listing.images[0] %> >
-                                </div>
+                            <div class="row">
+                                <img class="img-fluid img-responsive rounded product-image" src=<%= listing.images[0] %> >
                             </div>
                             <div class="row">
-                                <h3><%= listing.title %></h3><h4 class="mr-1">$<%= listing.price %></h4>
+                                <h3><%= listing.title %></h3>
+                                <h4 class="mr-1">$<%= listing.price %></h4>
                                 <h6><%= listing.author %></h6>
                                 <div class="d-flex flex-row">
                                     <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
