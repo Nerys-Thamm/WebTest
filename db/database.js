@@ -41,6 +41,7 @@ const Listing = mongoose.model('listing', ListingSchema);
 const UserSchema = new mongoose.Schema({
     id: {type: String, unique: true},
     username: String,
+    password: String,
     email: {type: String, unique: true},
     listings: [{type: mongoose.Schema.Types.ObjectId, ref: 'listing'}]
 });
