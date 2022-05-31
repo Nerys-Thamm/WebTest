@@ -30,14 +30,17 @@ router.post('/signin', db.passport.authenticate("local",{
 }));
 
 
-router.get('/logout', (req, res, next) => {
-    req.logout();
-    res.redirect('/signin');
+router.post('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
 });
+
 
 router.get('/dashboard', (req, res, next) => {
     if (req.isAuthenticated()) {
-        res.render('dashboard', { userid: req.user.id });
+        res.render('dashboard', { userid: req.user.username });
     }
     else{
         res.redirect('/signin');
@@ -47,7 +50,7 @@ router.get('/dashboard', (req, res, next) => {
 router.get('/profile', (req, res, next) => {
     
     if (req.isAuthenticated()) {
-        res.render('profile', {userid: req.user.id});
+        res.render('profile', { userid: req.user.username});
     }
     else{
         res.redirect('/signin');
