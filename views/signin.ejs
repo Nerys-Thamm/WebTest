@@ -1,12 +1,9 @@
-
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign In</title>
-</head>
+<%- include("partials/header.ejs") %>
+<%- include("partials/navbar.ejs") %>
 <h1>Sign In</h1>
 <form action="/signin" method="POST">
   <input type="text" name="username" placeholder="Username"/>
   <input type="text" name="password" placeholder="Password"/>
   <button type="submit"> Sign In </button>
 </form>
+<%- include("partials/footer.ejs") %>

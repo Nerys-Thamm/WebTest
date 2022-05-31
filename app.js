@@ -4,11 +4,12 @@ const bodyParser = require('body-parser');
 const route = require('./route');
 const db = require ('./db/database');
 const app = express();
+const methodOverride = require('method-override');
 const sessions = require('express-session');
 
 
 
-
+app.use(methodOverride('_method'));
 app.use(sessions({
     secret: 'secret',
     saveUninitialized: false,
