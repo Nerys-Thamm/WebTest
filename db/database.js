@@ -50,7 +50,7 @@ UserSchema.plugin(passportLocalMongoose);
 const User = mongoose.model('User', UserSchema);
 
 
-function CreateNewUser(name, email, password) {
+function CreateNewUser(name, email, password, req, res) {
     User.register(new User({ 
         id: uuid(),
         username: name,
