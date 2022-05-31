@@ -37,7 +37,7 @@ router.get('/logout', (req, res, next) => {
 
 router.get('/dashboard', (req, res, next) => {
     if (req.isAuthenticated()) {
-        res.render('dashboard', { userid: session.userid });
+        res.render('dashboard', { userid: req.user.id });
     }
     else{
         res.redirect('/signin');
@@ -47,7 +47,7 @@ router.get('/dashboard', (req, res, next) => {
 router.get('/profile', (req, res, next) => {
     
     if (req.isAuthenticated()) {
-        res.render('profile', {userid: session.userid});
+        res.render('profile', {userid: req.user.id});
     }
     else{
         res.redirect('/signin');
