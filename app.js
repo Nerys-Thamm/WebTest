@@ -5,7 +5,7 @@ const route = require('./route');
 const db = require ('./db/database');
 const app = express();
 const sessions = require('express-session');
-const cookieParser = require('cookie-parser');
+
 
 
 
@@ -21,7 +21,6 @@ db.passport.use(new db.LocalStrategy(db.User.authenticate()));
 db.passport.serializeUser(db.User.serializeUser());
 db.passport.deserializeUser(db.User.deserializeUser());
 app.set('view engine', 'ejs');
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', route);
 app.use((req, res, next) => { res.redirect('/dashboard') });
