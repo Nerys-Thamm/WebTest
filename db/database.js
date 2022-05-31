@@ -105,7 +105,7 @@ function CreateNewComment(listingid, userid, comment) {
     });
 }
 
-export { CreateNewUser, 
+module.exports = { CreateNewUser, 
     CreateNewListing, 
     CreateNewComment, 
     User, 
