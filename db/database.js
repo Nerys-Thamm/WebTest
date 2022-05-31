@@ -14,7 +14,7 @@ db.once('open', function () {
 });
 
 const CommentSchema = new mongoose.Schema({
-    id: String,
+    id: {type: String, unique: true},
     listingid: String,
     userid: String,
     comment: String,
@@ -25,7 +25,7 @@ const CommentSchema = new mongoose.Schema({
 const Comment = mongoose.model('comment', CommentSchema);
 
 const ListingSchema = new mongoose.Schema({
-    id: String,
+    id: {type: String, unique: true},
     userid: String,
     author: String,
     title: String,
@@ -39,10 +39,9 @@ const ListingSchema = new mongoose.Schema({
 const Listing = mongoose.model('listing', ListingSchema);
 
 const UserSchema = new mongoose.Schema({
-    id: String,
+    id: {type: String, unique: true},
     username: String,
-    email: String,
-    password: String,
+    email: {type: String, unique: true},
     listings: [{type: mongoose.Schema.Types.ObjectId, ref: 'listing'}]
 });
 
