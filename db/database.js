@@ -7,25 +7,58 @@ mongoose.set('useUnifiedTopology', true);
 
 mongoose.connect('mongodb://localhost/db_app');
 
-var userSchema = new mongoose.Schema({
+db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    console.log('Connected to MongoDB');
+});
+
+const CommentSchema = new mongoose.Schema({
+    id: String,
+    listingid: String,
+    userid: String,
+    comment: String,
+    timestamp: Date,
+    user: String
+});
+
+const Comment = mongoose.model('comment', CommentSchema);
+
+const ListingSchema = new mongoose.Schema({
+    id: String,
+    userid: String,
+    title: String,
+    description: String,
+    price: Number,
+    images: [String],
+    timestamp: Date,
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'comment'}]
+});
+
+const Listing = mongoose.model('listing', ListingSchema);
+
+const UserSchema = new mongoose.Schema({
+    id: String,
     name: String,
     email: String,
     password: String,
-    created_at: Date,
-    updated_at: Date
+    listings: [{type: mongoose.Schema.Types.ObjectId, ref: 'listing'}]
 });
 
-var User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', UserSchema);
 
-function createUser(user) {
-    return new Promise((resolve, reject) => {
-        User.create(user, (err, user) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(user);
-            }
-        });
+
+function CreateNewUser(name, email, password) {
+    let user = new User({
+        id: email,
+        name: name,
+        email: email,
+        password: password
+    });
+    user.save((err) => {
+        if (err) {
+            console.error(err);
+        }
     });
 }
 

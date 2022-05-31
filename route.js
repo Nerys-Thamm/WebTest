@@ -14,7 +14,7 @@ router.get('/signup', (req, res, next) => {
     
 });
 router.post('/signup', (req, res, next) => {
-    db.createUser(req.body.username, req.body.email, req.body.password, time, time);
+    db.createUser(new db.User(req.body.username, req.body.email, req.body.password, time, time));
     res.redirect('/signin');
 });
     
