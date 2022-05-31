@@ -24,10 +24,11 @@ router.get('/signin', (req, res, next) => {
     
     });
 
-router.post('/signin', (req, res, next) => {
-    db.passport.authenticate(req.body.email, req.body.password);
-    res.redirect('/dashboard');
-});
+router.post('/signin', db.passport.authenticate("local",{
+    successRedirect: "/dashboard",
+    failureRedirect: "/signin"
+}));
+
 
 router.get('/logout', (req, res, next) => {
     req.logout();
