@@ -54,13 +54,13 @@ router.post('/signin', (req, res, next) => {
             }
         }
         else {
-            res.sendFile(path.join(__dirname, 'signup.html'));
+            res.redirect('/signup');
         }
     });
     db.close();
 });
 
-router.post('/logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
     req.session.destroy();
     res.redirect('/signin');
 });
@@ -70,6 +70,17 @@ router.get('/dashboard', (req, res, next) => {
     if(session.userid)
     {
         res.render('dashboard', {userid: session.userid});
+    }
+    else{
+        res.redirect('/signin');
+    }
+});
+
+router.get('/profile', (req, res, next) => {
+    session = req.session;
+    if(session.userid)
+    {
+        res.render('profile', {userid: session.userid});
     }
     else{
         res.redirect('/signin');

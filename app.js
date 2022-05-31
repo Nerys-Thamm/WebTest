@@ -10,10 +10,10 @@ const cookieParser = require('cookie-parser');
 app.use(sessions({
     secret: 'secret',
     saveUninitialized: true,
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 120000 },
     resave: false
     }));
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', route);
