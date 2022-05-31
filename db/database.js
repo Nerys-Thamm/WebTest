@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const {v1: uuid } = require('uuid/v1');
+const {v1: uuid } = require('uuid');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 mongoose.set('newUrlParser', true);
