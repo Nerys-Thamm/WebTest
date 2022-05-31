@@ -63,6 +63,6 @@ router.get('/profile', (req, res, next) => {
         }
         console.log('Close the database connection.');
     });
-    module.exports = router;
     
-export { db };
+    
+export { db, router };
