@@ -84,7 +84,7 @@ router.get('/listings/new', (req, res, next) => {
 
 router.post('/listings/new', (req, res, next) => {
     if (req.isAuthenticated()) {
-        db.CreateNewListing(req.body.title, req.body.description, req.body.price, req.body.images, req.user.id);
+        db.CreateNewListing(req.body.title, req.body.description, req.body.price, req.body.image, req.user.id);
         res.redirect('/listings');
     }
     else{
