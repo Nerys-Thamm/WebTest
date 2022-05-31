@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-var uuid = require('uuid/v1');
+const {v1: uuid } = require('uuid/v1');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 mongoose.set('newUrlParser', true);
@@ -53,6 +53,7 @@ const UserSchema = new mongoose.Schema({
 UserSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model('User', UserSchema);
+
 
 function CreateNewUser(name, email, password) {
     User.register(new User({ 
