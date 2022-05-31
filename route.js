@@ -56,13 +56,6 @@ router.get('/profile', (req, res, next) => {
     }
 });
 
-
-    db.close((err) => {
-        if (err) {
-            console.error(err.message);
-        }
-        console.log('Close the database connection.');
-    });
     
 module.exports = {router, db};
 
