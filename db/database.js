@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const {v1: uuid } = require('uuid');
 var passportLocalMongoose = require('passport-local-mongoose');
 
