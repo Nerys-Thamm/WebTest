@@ -91,6 +91,39 @@ router.post('/listings/new', (req, res, next) => {
     }
 });
 
+router.get('/listings/:id', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        db.Listing.findOne({id: req.params.id}, (err, listing) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                db.Comment.find({listingid: req.params.id}, (err, comments) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        res.render('listing', { listing: listing, comments: comments, userid: req.user.username, loggedin: true, ismine: req.user.id === listing.userid });
+                    }
+                });
+            }
+        });
+    }
+    else{
+        res.redirect('/signin');
+    }
+});
+
+router.post('listings/:id/addcomment', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        db.CreateNewComment(req.params.id, req.user.id, req.body.comment);
+        res.redirect('/listings/' + req.params.id);
+    }
+    else{
+        res.redirect('/signin');
+    }
+});
+
     
 module.exports = router;
 
