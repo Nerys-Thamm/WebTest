@@ -57,6 +57,41 @@ router.get('/profile', (req, res, next) => {
     }
 });
 
+router.get('/listings', (req, res, next) => {
+    if (req.isAuthenticated()) { 
+        db.Listing.find({}, (err, listings) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.render('listings', { listings: listings, userid: req.user.username });
+            }
+        });
+    }
+    else{
+        res.redirect('/signin');
+    }
+});
+
+router.get('/listings/new', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        res.render('new', { userid: req.user.username });
+    }
+    else{
+        res.redirect('/signin');
+    }
+});
+
+router.post('/listings/new', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        db.CreateNewListing(req.body.title, req.body.description, req.body.price, req.body.images, req.user.id);
+        res.redirect('/listings');
+    }
+    else{
+        res.redirect('/signin');
+    }
+});
+
     
 module.exports = router;
 

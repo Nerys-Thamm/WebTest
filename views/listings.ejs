@@ -17,17 +17,16 @@
             <tbody>
             <% listings.forEach(function(listing) { %>
                 <tr>
-                <td><%= listing.id %></td>
-                <td><%= listing.name
+                <td><%= listing.author %></td>
+                <td><%= listing.title
                     %></td>
                     <td><%= listing.description
                         %></td>
                         <td><%= listing.price
                             %></td>
-                            <td><%= listing.image
-                            %></td>
-                            <td><%= listing.category
-                                %></td>
+                            <td><img src="<%= listing.image %>"></td>
+                            <td><%= listing.category %>
+                            </td>
                                 <td>
                                 <a href="/listings/<%= listing.id %>/edit" class="btn btn-primary">Edit</a>
                                 <a href="/listings/<%= listing.id %>/delete" class="btn btn-danger">Delete</a>
