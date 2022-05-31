@@ -11,8 +11,13 @@
         <li><a href="#">Thingy3</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
+        <% if (loggedin) { %>
+        <li><a href="/profile"><span class="glyphicon glyphicon-user"></span>  <%= userid %></a></li>
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>  Log Out</a></li>
+        <% } else { %>
+        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>  Log In</a></li>
+        <li><a href="/signup"><span class="glyphicon glyphicon-certificate"></span>  Get Started</a></li>
+        <% } %>
       </ul>
     </div>
   </nav>

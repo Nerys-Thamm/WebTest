@@ -10,7 +10,7 @@ var session;
 
 
 router.get('/signup', (req, res, next) => {
-    res.render('signup');
+    res.render('signup', { loggedin: false });
     
 });
 router.post('/signup', (req, res, next) => {
@@ -20,7 +20,7 @@ router.post('/signup', (req, res, next) => {
     
 
 router.get('/signin', (req, res, next) => {
-    res.render('signin');
+    res.render('signin', { loggedin: false });
     
     });
 
@@ -40,7 +40,7 @@ router.post('/logout', function(req, res, next) {
 
 router.get('/dashboard', (req, res, next) => {
     if (req.isAuthenticated()) {
-        res.render('dashboard', { userid: req.user.username });
+        res.render('dashboard', { userid: req.user.username, loggedin: true });
     }
     else{
         res.redirect('/signin');
@@ -50,7 +50,7 @@ router.get('/dashboard', (req, res, next) => {
 router.get('/profile', (req, res, next) => {
     
     if (req.isAuthenticated()) {
-        res.render('profile', { userid: req.user.username});
+        res.render('profile', { userid: req.user.username, loggedin: true });
     }
     else{
         res.redirect('/signin');
@@ -64,7 +64,7 @@ router.get('/listings', (req, res, next) => {
                 console.log(err);
             }
             else {
-                res.render('listings', { listings: listings, userid: req.user.username });
+                res.render('listings', { listings: listings, userid: req.user.username, loggedin: true });
             }
         });
     }
@@ -75,7 +75,7 @@ router.get('/listings', (req, res, next) => {
 
 router.get('/listings/new', (req, res, next) => {
     if (req.isAuthenticated()) {
-        res.render('new', { userid: req.user.username });
+        res.render('new', { userid: req.user.username, loggedin: true });
     }
     else{
         res.redirect('/signin');
