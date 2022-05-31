@@ -25,31 +25,12 @@ router.get('/signin', (req, res, next) => {
     });
 
 router.post('/signin', (req, res, next) => {
-    let db = new sqlite3.Database(path.join(__dirname, '/db/database.db'));
-    db.get('SELECT password FROM users WHERE username = ?', [req.body.username], (err, row) => {
-        if (err) {
-            console.error(err.message);
-        }
-        if (row) {
-            if(row.password == req.body.password){
-                session = req.session;
-                session.userid = req.body.username;
-                console.log(req.session);
-                res.redirect('/dashboard');
-            }
-            else{
-                res.send('Wrong password');
-            }
-        }
-        else {
-            res.redirect('/signup');
-        }
-    });
-    db.close();
+    db.passport.authenticate(req.body.email, req.body.password);
+    res.redirect('/dashboard');
 });
 
 router.get('/logout', (req, res, next) => {
-    req.session.destroy();
+    req.logout();
     res.redirect('/signin');
 });
 
@@ -84,4 +65,4 @@ router.get('/profile', (req, res, next) => {
     });
     module.exports = router;
     
-
+export { db };
