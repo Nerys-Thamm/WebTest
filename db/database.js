@@ -60,7 +60,7 @@ function CreateNewUser(name, email, password, req, res) {
             console.log(err);
         }
         else {
-            passport.authenticate('local')(req, res, () => {
+            passport.authenticate("local")(req, res, () => {
                 res.redirect('/dashboard');
             });
         }
