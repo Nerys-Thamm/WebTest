@@ -1,16 +1,11 @@
 const path = require('path');
 const express = require('express');
 const router = express.Router();
-const sqlite3 = require('sqlite3').verbose();
+const db = require ('./db/database');
 
 var session;
 
-let db = new sqlite3.Database(path.join(__dirname, '/db/database.db'), (err) => {
-    if (err) {
-        console.error(err.message);
-    }
-    console.log('Connected to the database.');
-});
+
 
 
 
@@ -19,14 +14,7 @@ router.get('/signup', (req, res, next) => {
     
 });
 router.post('/signup', (req, res, next) => {
-    let db = new sqlite3.Database(path.join(__dirname, '/db/database.db'));
-    db.all('INSERT INTO users (username, password) VALUES (?, ?)', [req.body.username, req.body.password], (err) => {
-        if (err) {
-            console.error(err.message);
-        }
-        console.log('A row has been inserted.');
-    })
-    db.close();
+    db.createUser(req.body.username, req.body.email, req.body.password, time, time);
     res.redirect('/signin');
 });
     
