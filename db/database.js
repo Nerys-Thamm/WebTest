@@ -19,7 +19,7 @@ const {v1: uuid } = require('uuid');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 //Connect to database
-mongoose.connect('mongodb://localhost/db_app');
+mongoose.connect('mongodb+srv://PowerfulDuck:hUKzaS6qWfSWgHq@tradeyou.4zhfhu1.mongodb.net/?retryWrites=true&w=majority');
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
