@@ -118,7 +118,6 @@ router.get('/listings/:id', (req, res, next) => {
 router.delete('/listings/:id', (req, res, next) => {
     if (req.isAuthenticated()) {
         // if user is author of listing, delete listing
-        console.log("Trying to find listing...");
         db.Listing.findOne({id: req.params.id}, (err, listing) => {
             if (err) {
                 console.log(err);
@@ -130,20 +129,66 @@ router.delete('/listings/:id', (req, res, next) => {
                             console.log(err);
                         }
                         else {
-                            console.log('Listing deleted');
                             res.redirect('/listings');
                         }
                     });
                 }
                 else {
-                    console.log('Not the author of this post!');
                     res.redirect('/listings');
                 }
             }
         });
     }
     else{
-        console.log('Not Authenticated!');
+        res.redirect('/signin');
+    }
+});
+
+router.get('/listings/:id/edit', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        db.Listing.findOne({id: req.params.id}, (err, listing) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                if (req.user.id == listing.userid) {
+                    res.render('edit', { listing: listing, userid: req.user.username, loggedin: true });
+                }
+                else {
+                    res.redirect('/listings');
+                }
+            }
+        });
+    }
+    else{
+        res.redirect('/signin');
+    }
+});
+
+router.put('/listings/:id', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        db.Listing.findOne({id: req.params.id}, (err, listing) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                if (req.user.id == listing.userid) {
+                    db.Listing.findOneAndUpdate({id: req.params.id}, {title: req.body.title, description: req.body.description, price: req.body.price, images: req.body.images}, (err, listing) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        else {
+                            res.redirect('/listings');
+                        }
+                    });
+                }
+                else {
+                    res.redirect('/listings');
+                }
+            }
+        });
+    }
+    else{
         res.redirect('/signin');
     }
 });
