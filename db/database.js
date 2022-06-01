@@ -75,7 +75,7 @@ function CreateNewListing(title, description, price, images, userid, username) {
         title: title,
         description: description,
         price: price,
-        images: images,
+        images: images.split(','),
         timestamp: new Date()
     });
     listing.save((err) => {
