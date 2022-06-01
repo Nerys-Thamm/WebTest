@@ -105,6 +105,7 @@ function CreateNewListing(title, description, shortdescription, price, images, u
         author:username,
         title: title,
         description: description,
+		shortdescription: shortdescription,
         price: price,
         images: images.split(','), //split the images into an array
         timestamp: new Date() //set the timestamp to the current time
