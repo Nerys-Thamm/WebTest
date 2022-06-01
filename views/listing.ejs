@@ -34,8 +34,12 @@
                                     </li>
                                     <li class="list-group-item justify-content-end">
                                         <div class="d-flex flex-row align-items-center">
-                                            <h3 class="mr-1">$<%= listing.price %></h3>
-                                            <button class="btn btn-outline-primary btn-lg mt-2 float-right" type="button">Buy Now</button>
+                                            <div class="col-md-8">
+                                                <h4 class="mr-1">$<%= listing.price %></h4>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-outline-primary btn-sm mt-2" type="button">Buy Now</button>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
