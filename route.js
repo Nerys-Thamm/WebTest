@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 const db = require ('./db/database');
+const { Console } = require('console');
 
 var session;
 
@@ -128,17 +129,20 @@ router.delete('/listings/:id', (req, res, next) => {
                             console.log(err);
                         }
                         else {
+                            console.log('Listing deleted');
                             res.redirect('/listings');
                         }
                     });
                 }
                 else {
+                    console.log('Not the author of this post!');
                     res.redirect('/listings');
                 }
             }
         });
     }
     else{
+        console.log('Not Authenticated!');
         res.redirect('/signin');
     }
 });
