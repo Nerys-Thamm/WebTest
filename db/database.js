@@ -71,7 +71,7 @@ function CreateNewListing(title, description, price, images, userid, username) {
     let listing = new Listing({
         id: uuid(),
         userid: userid,
-        author: User.findOne({id: userid}).username,
+        author:username,
         title: title,
         description: description,
         price: price,
