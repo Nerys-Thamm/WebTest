@@ -1,0 +1,58 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/navbar.ejs") %>
+<!--form for editing a post-->
+<div class="jumbotron">
+    <h1>Listings</h1>
+  </div>
+  <div class="container mt-5 mb-5 min-vh-100">
+    <div class="row">
+        <div class="col col-md-3 p-2 bg-white border">
+            <div class="sticky-top sticky-offset">
+                <div class="list-group">
+                    <a href="/profile" class="list-group-item list-group-item-action">Profile</a>
+                    <a href="/listings" class="list-group-item list-group-item-action">Listings</a>
+                    <a href="/listings/new" class="list-group-item list-group-item-action">New Listing</a>
+                    <a href="/signout" class="list-group-item list-group-item-action">Sign Out</a>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-9">
+            <div class="d-flex justify-content-center row">
+              <div class="col-md-11">
+                <div class="row p-2 border rounded">
+                    <div class="container-fluid card">
+                        <div class="card-title">
+                            <div class="col-md-3 mt-1">
+                                <a href="/listings" class="fa fa-chevron-left"><h5>Back to Listings...</h5></a>
+                            </div>
+                        </div>
+                            <div class="card-body">
+                              <!--Form for new listing-->
+                              <form action="/listings/new" method="POST">
+                                <div class="form-group">
+                                  <label for="title">Title</label>
+                                  <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+                                </div>
+                                <div class="form-group">
+                                  <label for="description">Description</label>
+                                  <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <label for="price">Price</label>
+                                  <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+                                </div>
+                                <div class="form-group">
+                                  <label for="images">Images</label>
+                                  <input type="text" class="form-control" id="images" name="images" multiple>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+<%- include("partials/footer.ejs") %>

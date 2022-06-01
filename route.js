@@ -81,7 +81,7 @@ router.get('/listings/new', (req, res, next) => {
     }
 });
 
-router.post('/listings/new', (req, res, next) => {
+router.post('/listings', (req, res, next) => {
     if (req.isAuthenticated()) {
         db.CreateNewListing(req.body.title, req.body.description, req.body.price, req.body.images, req.user.id, req.user.username);
         res.redirect('/listings');
@@ -114,10 +114,29 @@ router.get('/listings/:id', (req, res, next) => {
     }
 });
 
-router.post('listings/:id/addcomment', (req, res, next) => {
+router.delete('/listings/:id', (req, res, next) => {
     if (req.isAuthenticated()) {
-        db.CreateNewComment(req.params.id, req.user.id, req.body.comment);
-        res.redirect('/listings/' + req.params.id);
+        // if user is author of listing, delete listing
+        db.Listing.findOne({id: req.params.id}, (err, listing) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                if (req.user.id === listing.userid) {
+                    db.Listing.findOneAndRemove({id: req.params.id}, (err, listing) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        else {
+                            res.redirect('/listings');
+                        }
+                    });
+                }
+                else {
+                    res.redirect('/listings');
+                }
+            }
+        });
     }
     else{
         res.redirect('/signin');
