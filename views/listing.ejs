@@ -28,13 +28,12 @@
                             <img class="card-img-top" src=<%= listing.images[0] %> >
                             <div class="card-body">
                                 <h5 class="card-title"><%= listing.title %></h5>
-                                <div class="card-body">
-                                    <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
-                                </div>
-                                <p class="card-text"><%= listing.description %><br><br></p>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">
-                                        $<%= listing.price %>
+                                        <p class="text-justify text-truncate para mb-0"><%= listing.description %><br><br></p>
+                                    </li>
+                                    <li class="list-group-item justify-content-end">
+                                        <h5 class="card-title">$<%= listing.price %></h5>
                                         <button class="btn btn-outline-primary btn-sm mt-2" type="button">Buy Now</button>
                                     </li>
                                 </ul>
