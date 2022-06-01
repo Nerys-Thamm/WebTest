@@ -173,7 +173,7 @@ router.put('/listings/:id', (req, res, next) => {
             }
             else {
                 if (req.user.id == listing.userid) {
-                    db.Listing.findOneAndUpdate({id: req.params.id}, {title: req.body.title, description: req.body.description, price: req.body.price, images: req.body.images}, (err, listing) => {
+                    db.Listing.findOneAndUpdate({id: req.params.id}, {title: req.body.title, description: req.body.description, price: req.body.price, images: req.body.images.split(",")}, (err, listing) => {
                         if (err) {
                             console.log(err);
                         }
