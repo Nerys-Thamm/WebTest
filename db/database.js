@@ -67,7 +67,7 @@ function CreateNewUser(name, email, password, req, res) {
     });
 }
 
-function CreateNewListing(title, description, price, images, userid) {
+function CreateNewListing(title, description, price, images, userid, username) {
     let listing = new Listing({
         id: uuid(),
         userid: userid,
