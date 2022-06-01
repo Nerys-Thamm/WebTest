@@ -1,5 +1,14 @@
 <%- include("partials/header.ejs") %>
 <%- include("partials/navbar.ejs") %>
+<script type="text/javascript">
+  $(document).ready(function () {
+      $('.carousel').carousel({
+          interval: 3000
+      });
+  
+      $('.carousel').carousel('cycle');
+  });
+  </script>  
 <div class="jumbotron">
   <h1> <span class="glyphicon glyphicon-dashboard"></span>Welcome back, <%= userid %></h1>
   <p>The world's coolest collection of totally legal items is just a click away!</p>
@@ -28,7 +37,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="https://s.yimg.com/os/creatr-uploaded-images/2021-02/572c4830-721d-11eb-bb63-96959c3b62f2" alt="Third slide">
+          <img class="d-block w-100" src="https://voonze.com/wp-content/uploads/2021/02/ia-never-gonna-give-you-up-rick-astley-trionfale-remaster-4k-v3-500421.jpg" alt="Third slide">
           <div class="carousel-caption d-none d-md-block">
             <h1>Never gonna give you up</h1>
             <h3>Never gonna let you down, never gonna run around and desert you.</h3>
