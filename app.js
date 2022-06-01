@@ -48,5 +48,5 @@ app.use((req, res, next) => { res.redirect('/dashboard') });
 
 //Create server and have it listen on port 3000
 const server = http.createServer(app);
-server.listen(3000, ()=>{console.log('Server is running on port 3000');});
+server.listen(process.env.PORT || 3000, process.env.IP, ()=>{console.log('Server is running on port 3000');});
 
