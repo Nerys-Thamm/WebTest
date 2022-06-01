@@ -122,7 +122,7 @@ router.delete('/listings/:id', (req, res, next) => {
                 console.log(err);
             }
             else {
-                if (req.user.id === listing.userid) {
+                if (req.user.id == listing.userid) {
                     db.Listing.findOneAndRemove({id: req.params.id}, (err, listing) => {
                         if (err) {
                             console.log(err);
