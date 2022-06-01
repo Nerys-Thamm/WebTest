@@ -33,6 +33,7 @@ const ListingSchema = new mongoose.Schema({
     author: String, //Username of the author
     title: String, //Title of the listing
     description: String, //Description of the listing
+	shortdescription: String, //Short Description of the listing
     price: Number, //Price of the listing
     images: [String], //Array of image URLs
     timestamp: Date, //Timestamp of when the listing was created
@@ -97,13 +98,14 @@ function CreateNewUser(name, email, password, req, res) {
 // Nothing
 //
 //-----------------------------------------------------------
-function CreateNewListing(title, description, price, images, userid, username) {
+function CreateNewListing(title, description, shortdescription, price, images, userid, username) {
     let listing = new Listing({ //create a new listing
         id: uuid(), //generate a unique id
         userid: userid,
         author:username,
         title: title,
         description: description,
+		shortdescription: shortdescription,
         price: price,
         images: images.split(','), //split the images into an array
         timestamp: new Date() //set the timestamp to the current time

@@ -120,7 +120,7 @@ router.get('/listings/new', (req, res, next) => {//get the form for creating a n
 //-----------------------------------------------------------
 router.post('/listings', (req, res, next) => {//create a new listing
     if (req.isAuthenticated()) {
-        db.CreateNewListing(req.body.title, req.body.description, req.body.price, req.body.images, req.user.id, req.user.username);
+        db.CreateNewListing(req.body.title, req.body.description, req.body.smalldescription, req.body.price, req.body.images, req.user.id, req.user.username);
         res.redirect('/listings');
     }
     else{
@@ -214,7 +214,7 @@ router.put('/listings/:id', (req, res, next) => {//update a listing
             }
             else {
                 if (req.user.id == listing.userid) {//if user is author of listing
-                    db.Listing.findOneAndUpdate({id: req.params.id}, {title: req.body.title, description: req.body.description, price: req.body.price, images: req.body.images.split(",")}, (err, listing) => {//update the listing
+                    db.Listing.findOneAndUpdate({id: req.params.id}, {title: req.body.title, description: req.body.description, shortdescription: req.body.shortdescription, price: req.body.price, images: req.body.images.split(",")}, (err, listing) => {//update the listing
                         if (err) {
                             console.log(err);
                         }
