@@ -27,18 +27,26 @@
                             </div>
                             <img class="card-img-top" src=<%= listing.images[0] %> >
                             <div class="card-body">
-                                <h5 class="card-title"><%= listing.title %></h5>
                                 <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <div class="d-flex flex-row">
+                                            <h5 class="card-title"><%= listing.title %></h5>
+                                        </div>
+                                    <li class="list-group-item">
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                                        </div>
+                                    </li>
                                     <li class="list-group-item">
                                         <p class="text-justify text-truncate para mb-0"><%= listing.description %><br><br></p>
                                     </li>
                                     <li class="list-group-item justify-content-end">
-                                        <div class="d-flex flex-row align-items-center">
+                                        <div class="d-flex flex-row-reverse">
                                             <div class="col-md-8">
                                                 <h4 class="mr-1">$<%= listing.price %></h4>
                                             </div>
                                             <div class="col-md-4">
-                                                <button class="btn btn-outline-primary btn-sm mt-2" type="button">Buy Now</button>
+                                                <button class="btn btn-outline-primary btn-lg mt-2" type="button">Buy Now</button>
                                             </div>
                                         </div>
                                     </li>
