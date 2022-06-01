@@ -118,6 +118,7 @@ router.get('/listings/:id', (req, res, next) => {
 router.delete('/listings/:id', (req, res, next) => {
     if (req.isAuthenticated()) {
         // if user is author of listing, delete listing
+        console.log("Trying to find listing...");
         db.Listing.findOne({id: req.params.id}, (err, listing) => {
             if (err) {
                 console.log(err);
