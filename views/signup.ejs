@@ -1,10 +1,36 @@
 <%- include("partials/header.ejs") %>
 <%- include("partials/navbar.ejs") %>
-<h1>Sign Up</h1>
-<form action="/signup" method="POST">
-  <input type="text" name="username" placeholder="Username"/>
-  <input type="text" name="password" placeholder="Password"/>
-  <input type="text" name="email" placeholder="Email"/>
-  <button type="submit"> Sign Up </button>
-</form>
+<div class="container-fluid login-page min-vh-100">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto align-self-center">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+          <h5 class="card-title text-center mb-5 fw-light fs-5">Sign Up</h5>
+          <form action="/signup" method="POST">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Username">
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-block text-uppercase fw-bold" type="submit">Sign up</button>
+            </div>
+            <hr class="my-4">
+            <!--No Account? Sign up-->
+            <div class="d-grid">
+              <p class="text-center mb-0">Already have an Account? <a href="/signin">Sign in</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <%- include("partials/footer.ejs") %>
