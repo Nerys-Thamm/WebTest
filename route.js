@@ -1,3 +1,17 @@
+/*
+ * Bachelor of Software Engineering
+ * Media Design School
+ * Auckland
+ * New Zealand
+ * 
+ * (c) 2022 Media Design School
+ * 
+ * File Name: route.js
+ * Description: 
+ * Author: Nerys Thamm
+ * Mail: nerysthamm@gmail.com
+ */
+
 const path = require('path');
 const express = require('express');
 const router = express.Router();
@@ -6,30 +20,38 @@ const { Console } = require('console');
 
 var session;
 
-
-
-
-
+//-----------------------------------------------------------
+// signup - GET
+//-----------------------------------------------------------
 router.get('/signup', (req, res, next) => {
     res.render('signup', { loggedin: false });
-    
 });
+
+//-----------------------------------------------------------
+// signup - POST
+//-----------------------------------------------------------
 router.post('/signup', (req, res, next) => {
     db.CreateNewUser(req.body.username, req.body.email, req.body.password, req, res);
 });
     
-
+//-----------------------------------------------------------
+// login - GET
+//-----------------------------------------------------------
 router.get('/signin', (req, res, next) => {
     res.render('signin', { loggedin: false });
-    
-    });
+});
 
+//-----------------------------------------------------------
+// login - POST
+//-----------------------------------------------------------
 router.post('/signin', db.passport.authenticate("local",{
     successRedirect: "/dashboard",
     failureRedirect: "/signin"
 }));
 
-
+//-----------------------------------------------------------
+// logout - POST
+//-----------------------------------------------------------
 router.post('/logout', function(req, res, next) {
     req.logout(function(err) {
         if (err) { return next(err); }
@@ -37,7 +59,9 @@ router.post('/logout', function(req, res, next) {
     });
 });
 
-
+//-----------------------------------------------------------
+// dashboard - GET
+//-----------------------------------------------------------
 router.get('/dashboard', (req, res, next) => {
     if (req.isAuthenticated()) {
         res.render('dashboard', { userid: req.user.username, loggedin: true });
@@ -47,6 +71,9 @@ router.get('/dashboard', (req, res, next) => {
     }
 });
 
+//-----------------------------------------------------------
+// profile - GET
+//-----------------------------------------------------------
 router.get('/profile', (req, res, next) => {
     
     if (req.isAuthenticated()) {
@@ -57,9 +84,12 @@ router.get('/profile', (req, res, next) => {
     }
 });
 
+//-----------------------------------------------------------
+// listings - GET : Displays all listings
+//-----------------------------------------------------------
 router.get('/listings', (req, res, next) => {
     if (req.isAuthenticated()) { 
-        db.Listing.find({}, (err, listings) => {
+        db.Listing.find({}, (err, listings) => { //find all listings
             if (err) {
                 console.log(err);
             }
@@ -73,7 +103,10 @@ router.get('/listings', (req, res, next) => {
     }
 });
 
-router.get('/listings/new', (req, res, next) => {
+//-----------------------------------------------------------
+// listings/new - GET : Displays the form for creating a new listing
+//-----------------------------------------------------------
+router.get('/listings/new', (req, res, next) => {//get the form for creating a new listing
     if (req.isAuthenticated()) {
         res.render('new', { userid: req.user.username, loggedin: true });
     }
@@ -82,7 +115,10 @@ router.get('/listings/new', (req, res, next) => {
     }
 });
 
-router.post('/listings', (req, res, next) => {
+//-----------------------------------------------------------
+// listings - POST : Creates a new listing
+//-----------------------------------------------------------
+router.post('/listings', (req, res, next) => {//create a new listing
     if (req.isAuthenticated()) {
         db.CreateNewListing(req.body.title, req.body.description, req.body.price, req.body.images, req.user.id, req.user.username);
         res.redirect('/listings');
@@ -92,21 +128,17 @@ router.post('/listings', (req, res, next) => {
     }
 });
 
-router.get('/listings/:id', (req, res, next) => {
+//-----------------------------------------------------------
+// listings/:id - GET : Displays the details of a listing
+//-----------------------------------------------------------
+router.get('/listings/:id', (req, res, next) => {//get the details of a listing
     if (req.isAuthenticated()) {
-        db.Listing.findOne({id: req.params.id}, (err, listing) => {
+        db.Listing.findOne({id: req.params.id}, (err, listing) => {//find the listing
             if (err) {
                 console.log(err);
             }
             else {
-                db.Comment.find({listingid: req.params.id}, (err, comments) => {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        res.render('listing', { listing: listing, comments: comments, userid: req.user.username, loggedin: true, ismine: req.user.id === listing.userid });
-                    }
-                });
+                res.render('listing', { listing: listing, userid: req.user.username, loggedin: true, ismine: req.user.id === listing.userid }); 
             }
         });
     }
@@ -115,16 +147,19 @@ router.get('/listings/:id', (req, res, next) => {
     }
 });
 
-router.delete('/listings/:id', (req, res, next) => {
+//-----------------------------------------------------------
+// listings/:id - DELETE : Deletes a listing
+//-----------------------------------------------------------
+router.delete('/listings/:id', (req, res, next) => {//delete a listing
     if (req.isAuthenticated()) {
         // if user is author of listing, delete listing
-        db.Listing.findOne({id: req.params.id}, (err, listing) => {
+        db.Listing.findOne({id: req.params.id}, (err, listing) => {//find the listing
             if (err) {
                 console.log(err);
             }
             else {
-                if (req.user.id == listing.userid) {
-                    db.Listing.findOneAndRemove({id: req.params.id}, (err, listing) => {
+                if (req.user.id == listing.userid) {//if user is author of listing
+                    db.Listing.findOneAndRemove({id: req.params.id}, (err, listing) => {//delete the listing
                         if (err) {
                             console.log(err);
                         }
@@ -144,18 +179,21 @@ router.delete('/listings/:id', (req, res, next) => {
     }
 });
 
-router.get('/listings/:id/edit', (req, res, next) => {
+//-----------------------------------------------------------
+// listings/:id/edit - GET : Displays the form for editing a listing
+//-----------------------------------------------------------
+router.get('/listings/:id/edit', (req, res, next) => {//get the form for editing a listing
     if (req.isAuthenticated()) {
-        db.Listing.findOne({id: req.params.id}, (err, listing) => {
+        db.Listing.findOne({id: req.params.id}, (err, listing) => {//find the listing
             if (err) {
                 console.log(err);
             }
             else {
-                if (req.user.id == listing.userid) {
-                    res.render('edit', { listing: listing, userid: req.user.username, loggedin: true });
+                if (req.user.id == listing.userid) {//if user is author of listing
+                    res.render('edit', { listing: listing, userid: req.user.username, loggedin: true });//render the form
                 }
                 else {
-                    res.redirect('/listings');
+                    res.redirect('/listings');//redirect to listings
                 }
             }
         });
@@ -165,15 +203,18 @@ router.get('/listings/:id/edit', (req, res, next) => {
     }
 });
 
-router.put('/listings/:id', (req, res, next) => {
+//-----------------------------------------------------------
+// listings/:id - PUT : Updates a listing
+//-----------------------------------------------------------
+router.put('/listings/:id', (req, res, next) => {//update a listing
     if (req.isAuthenticated()) {
-        db.Listing.findOne({id: req.params.id}, (err, listing) => {
+        db.Listing.findOne({id: req.params.id}, (err, listing) => {//find the listing
             if (err) {
                 console.log(err);
             }
             else {
-                if (req.user.id == listing.userid) {
-                    db.Listing.findOneAndUpdate({id: req.params.id}, {title: req.body.title, description: req.body.description, price: req.body.price, images: req.body.images.split(",")}, (err, listing) => {
+                if (req.user.id == listing.userid) {//if user is author of listing
+                    db.Listing.findOneAndUpdate({id: req.params.id}, {title: req.body.title, description: req.body.description, price: req.body.price, images: req.body.images.split(",")}, (err, listing) => {//update the listing
                         if (err) {
                             console.log(err);
                         }
