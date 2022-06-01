@@ -33,8 +33,10 @@
                                         <p class="text-justify text-truncate para mb-0"><%= listing.description %><br><br></p>
                                     </li>
                                     <li class="list-group-item justify-content-end">
-                                        <h5 class="card-title">$<%= listing.price %></h5>
-                                        <button class="btn btn-outline-primary btn-sm mt-2" type="button">Buy Now</button>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$<%= listing.price %></h4>
+                                            <button class="btn btn-outline-primary btn-sm mt-2" type="button">Buy Now</button>
+                                        </div>
                                     </li>
                                 </ul>
                                 <div class="card-footer">
