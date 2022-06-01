@@ -6,7 +6,7 @@
 </div>
 <div class="container-fluid min-vh-100">
   <div class="row">
-    <div id="myCarousel" class="carousel slide">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval=1>
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -78,29 +78,4 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  $(document).ready(function () {  
-            // Activate Carousel with a specified interval speed  
-            $("#myCarousel").carousel({ interval: 8000 });  
-  
-            // Enable Carousel Indicators  
-            $(".item1").click(function () {  
-                $("#myCarousel").carousel(0);  
-            });  
-            $(".item2").click(function () {  
-                $("#myCarousel").carousel(1);  
-            });  
-            $(".item3").click(function () {  
-                $("#myCarousel").carousel(2);  
-            });  
-  
-            // Enable Carousel Controls  
-            $(".carousel-control-prev").click(function () {  
-                $("#myCarousel").carousel("prev");  
-            });  
-            $(".carousel-control-next").click(function () {  
-                $("#myCarousel").carousel("next");  
-            });  
-        });  
-</script>
 <%- include("partials/footer.ejs") %>
