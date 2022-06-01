@@ -117,8 +117,7 @@ function CreateNewListing(title, description, price, images, userid, username) {
 
 // Exports
 module.exports = { CreateNewUser, 
-    CreateNewListing, 
-    CreateNewComment, 
+    CreateNewListing,  
     User, 
     Listing, 
     Comment,
