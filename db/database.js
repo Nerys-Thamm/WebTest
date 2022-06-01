@@ -120,7 +120,6 @@ module.exports = { CreateNewUser,
     CreateNewListing,  
     User, 
     Listing, 
-    Comment,
     mongoose,
     passport,
     LocalStrategy };
