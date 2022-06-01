@@ -5,7 +5,9 @@
         TradeYou
     </a>
     <ul class="navbar-nav">
+        <% if (loggedin) { %>
         <li class="nav-item"><a class="nav-link" href="/listings"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  Browse</a></li>
+        <% } %> 
     </ul>
     <ul class="navbar-nav ml-auto">
         <% if (loggedin) { %>
