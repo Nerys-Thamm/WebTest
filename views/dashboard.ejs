@@ -79,12 +79,9 @@
   </div>
 </div>
 <script>
-  $('#myCarousel').carousel
-  ({
-      interval: 2000,
-
-
-      })
-
-  </script>
+  $(document).ready(function ()
+  {
+      $('.carousel').carousel({interval:5000,pause:false});
+  });
+</script>
 <%- include("partials/footer.ejs") %>
